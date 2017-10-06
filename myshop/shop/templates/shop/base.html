@@ -13,12 +13,26 @@
         <input type="text" name="search" id="search" placeholder="Search">
         <ul id="search-results">
         </ul>
+
     </div>
     <div id="subheader">
+        <div class="accounts">
+            <ul class="login" style="list-style-type: none; margin: 0;">
+                {% if request.user.is_authenticated %}
+
+                    <li style="float:left; margin: 0 10px 0 0;"><a href="#">{{ request.user.username }}</a></li>
+                    <li ><a href="{% url 'logout' %}">Đăng xuất</a></li>
+                {% else %}
+                    <li style="float:left; margin: 0 10px 0 0;"><a href="{% url 'logins' %}">Đăng nhập</a></li>
+                    <li><a href="{% url 'register' %}">Đăng ký</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
         <div class="cart">
             {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
-                    Your cart: 
+                    Your cart:
                     <a href="{% url "cart:cart_detail" %}">
                         {{ total_items }} item{{ total_item|pluralize }}, {{ cart.get_total_price }}
                     </a>

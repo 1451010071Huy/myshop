@@ -10,6 +10,10 @@ h1, h2, h3, h4, h5 , h6 {
     font-family: 'Ubuntu', sans-serif; font-weight:normal;
 }
 
+/*#subheader .accounts ul.login {*/
+    /*list-style-type: none;*/
+/*}*/
+
 a {
     text-decoration:none;
     color:#C7952B;
@@ -140,6 +144,8 @@ ul.errorlist {
     float:right;
     padding-top:4px;
 }
+ /*.accounts{}*/
+
 
 #content {
     padding:0 100px;

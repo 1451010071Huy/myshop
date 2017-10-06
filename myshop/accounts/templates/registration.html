@@ -1,0 +1,19 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<h1>ĐĂNG KÝ</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <table>
+            {{ register_form }}
+            <tr>
+                <td>
+                    <input type="submit" value="Đăng ký"/>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+
+{% endblock content %}
