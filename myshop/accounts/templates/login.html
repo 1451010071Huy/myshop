@@ -1,0 +1,15 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<h1>ĐĂNG NHẬP</h1>
+<form method ="post" action="">
+    {% csrf_token %}
+    <table>
+         {{ login_form }}
+        <tr>
+            <td> <input type="submit" value="Đăng nhập"/></td>
+        </tr>
+    </table>
+
+</form>
+{% endblock content %}
