@@ -1,24 +1,51 @@
-{% extends "shop/base.html" %}
-
-{% block title %}
-    Checkout
-{% endblock %}
-
-{% block content %}
-    <h1>Checkout</h1>
-    
-    <div class="order-info">
-        <h3>Your order</h3>
-        <ul>
-            {% for item in cart %}
-                <li>{{ item.quantity }}x {{ item.product.name }} <span>{{ item.total_price }}</span></li>
-            {% endfor %}
-        </ul>
-        <p>Total: {{ cart.get_total_price }}</p>
+{% extends "shop/base.html" %} {% block title %} Checkout {% endblock %} {% block content %}
+<div class="mt-5"></div>
+<div class="container">
+    <div class="row">
+        <form action="." method="post" class="col-sm-5">
+                <div class="form row">
+                <div class="form-group col-md-6">
+                    <label for="first_name" class="col-form-label">First name</label>
+                    <input class="form-control" type="text" name="first_name" maxlength="50" required="" id="id_first_name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="last_name" class="col-form-label">Last name</label>
+                    <input class="form-control" type="text" name="last_name" maxlength="50" required="" id="id_last_name">
+                </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" name="email" maxlength="254" required="" id="id_email">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input class="form-control" type="text" name="address" maxlength="250" required="" id="id_address">
+                </div>
+                <div class="form-group">
+                    <label for="postal_code">Postal code</label>
+                    <input class="form-control" type="text" name="postal_code" maxlength="20" required="" id="id_postal_code">
+                </div>
+                <div class="form-group">
+                    <label for="id_city">City</label>
+                    <input class="form-control" type="text" name="city" maxlength="100" required="" id="id_city">
+                </div>
+                <input class="btn btn-default btn-login-submit btn-block m-t-md" type="submit" value="Place order"> {% csrf_token %}
+        </form>
+        <div class="col-sm-6 text-right">
+            <h1>Checkout</h1>
+            <div class="panel panel-success">
+                <h3>Your order</h3>
+                <ul>
+                    {% for item in cart %}
+                    <div>
+                            {{ item.quantity }}x {{ item.product.name }} <span>{{ item.total_price }}</span>
+                    </div>
+                    {% endfor %}
+                </ul>
+                <p>Total: {{ cart.get_total_price }}</p>
+            </div>
+        </div>
     </div>
-    <form action="." method="post" class="order-form">
-        {{ form.as_p }}
-        <p><input type="submit" value="Place order"></p>
-        {% csrf_token %}
-    </form>
+</div>
+</div>
 {% endblock content %}

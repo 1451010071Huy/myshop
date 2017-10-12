@@ -1,52 +1,104 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>{% block title %}My shop{% endblock %}</title>
-    <link href="{% static "css/base.css" %}" rel="stylesheet">
-</head>
-<body>
-    <div id="header">
-        <a href="/" class="logo">My shop</a>
-        {% csrf_token %}
-        <input type="text" name="search" id="search" placeholder="Search">
-        <ul id="search-results">
-        </ul>
+<html lang="en">
 
-    </div>
-    <div id="subheader">
-        <div class="accounts">
-            <ul class="login" style="list-style-type: none; margin: 0;">
-                {% if request.user.is_authenticated %}
+  <head>
 
-                    <li style="float:left; margin: 0 10px 0 0;"><a href="#">{{ request.user.username }}</a></li>
-                    <li ><a href="{% url 'logout' %}">Đăng xuất</a></li>
-                {% else %}
-                    <li style="float:left; margin: 0 10px 0 0;"><a href="{% url 'logins' %}">Đăng nhập</a></li>
-                    <li><a href="{% url 'register' %}">Đăng ký</a></li>
-                {% endif %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "vendor/bootstrap/css/bootstrap.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/shop-homepage.css" %}" rel="stylesheet">
+  
+    <style>
+        a{
+        text-decoration:none;
+        color: #BF368E;
+        }
+        a:hover 
+        {
+           text-decoration: none;
+        }
+    </style>
+  </head>
+
+  <body>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/">My Shop <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <ul class="navbar-nav mr-sm-2"></ul>
+            <form class="form-inline mr-auto">
+              <input class="form-control mr-sm-2 form-control-sm" type="text" placeholder="Search" aria-label="Search" name="search"/>
+              <input class="btn btn-secondary my-2 my-sm-0 btn-sm" type="submit" value="Search"/>
+            </form>
             </ul>
-        </div>
-
-        <div class="cart">
-            {% with total_items=cart|length %}
-                {% if cart|length > 0 %}
-                    Your cart:
-                    <a href="{% url "cart:cart_detail" %}">
-                        {{ total_items }} item{{ total_item|pluralize }}, {{ cart.get_total_price }}
-                    </a>
+            <ul class="navbar-nav mr-sm-2">
+                    {% with total_items=cart|length %}
+                        {% if cart|length > 0 %}
+                        <a class="nav-link" href="{% url "cart:cart_detail" %}">
+                            Your cart:  {{ total_items }} item{{ total_item|pluralize }}, {{ cart.get_total_price }}</a>
+                        {% else %}
+                            Your cart is empty
+                        {% endif %}
+                    {% endwith %}
+            </ul>           
+            <div class="dropdown">
+                {% if request.user.is_authenticated %}
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ request.user.username }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
                 {% else %}
-                    Your cart is empty.
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Login/Register
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <a class="dropdown-item" href="/accounts/login">Login</a>
+                  <a class="dropdown-item" href="/accounts/register">Register</a>
+                </div>
                 {% endif %}
-            {% endwith %}
-        </div>
-    </div>
-    <div id="content">
-        {% block content %}
-        {% endblock content %}
-    </div>
-    <script src="{% static "js/jquery-2.0.0.min.js" %}"></script>
-    <script src="{% static "js/ajax.js" %}"></script>
-</body>
+              </div>
+          </ul>
+          </div>
+   
+    </nav>
+
+    {% block content %}
+    {% endblock content %}
+
+    <!-- Footer -->
+    <footer class="footer py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "vendor/popper/popper.min.js" %}"></script>
+    <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+  </body>
+
 </html>

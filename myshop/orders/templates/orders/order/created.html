@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Thank you</h1>
-    <p>Your order has been successfully completed. Your order number is <strong>{{ order.id }}</strong>.</p>
+    <div class="alert alert-success" role="alert">
+        <strong>Thank you!</strong> Your order has been successfully completed. Your order number is <span class="label label-default">{{ order.id }}</span> <a href="/" class="alert-link">Continue Shopping</a>.
+    </div>
 {% endblock content %}
