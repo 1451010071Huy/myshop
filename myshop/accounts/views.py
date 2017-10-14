@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.urls import reverse
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.views.generic import View
-from .forms import UserForm, RegisterForm
+from .forms import UserForm, RegisterForm, EditProfileForm
+
 # Create your views here.
 
 
@@ -52,3 +53,22 @@ def register_user_view(request):
     return render(request,"registration.html",{'register_form':form})
 
 
+def view_profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user}
+    return render(request, 'profile.html', args)
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/accounts/profile')
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'edit_profile.html', args)
