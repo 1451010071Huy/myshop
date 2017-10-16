@@ -9,7 +9,7 @@
     <div class="container mt-5">
             <div class="row">
                 <div class="col">
-                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                    <img style="height: 500px; width: 500px" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
                 </div>
                 <div class="col">     
                     <h1>{{ product.name }}</h1>
