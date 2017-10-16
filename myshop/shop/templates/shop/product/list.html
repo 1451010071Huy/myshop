@@ -58,7 +58,7 @@
            {% for product in products %}
            <div class="col-lg-4 col-md-6 mb-4">
              <div class="card h-100">
-               <a href="{{ product.get_absolute_url }}"><img class="card-img-top" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt=""></a>
+               <a href="{{ product.get_absolute_url }}"><img style="width: 100%; height: 220px;" class="card-img-top" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt=""></a>
                <div class="card-body">
                  <h4 class="card-title">
                    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
