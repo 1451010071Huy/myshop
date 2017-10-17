@@ -9,14 +9,21 @@ from .forms import (
     EditProfileForm,
      )
 from django.contrib.auth.forms import PasswordChangeForm
+from django import views
 # Create your views here.
 
 
 def logins(request):
-    form = UserForm()
+    form = UserForm(request.POST or None)
 
     if request.method == "POST":
         user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+
+            user = authenticate(username=username, password=password)
+
         if user is not None:
             login(request,user)
 
