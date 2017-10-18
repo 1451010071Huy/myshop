@@ -1,4 +1,8 @@
-{% extends 'shop/base.html' %} {% block content %}
+{% extends 'shop/base.html' %} 
+{% block title %}
+Register
+{% endblock title %}
+{% block content %}
 <form method="post" action="">
     <div class="container">
         <div class="row">
@@ -59,7 +63,10 @@
                 <div class="form-group">
                     <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Sign up" />
                 </div>
-                <span class='text-center'><a href="/resetting/request" class="text-sm">Forgot Password?</a></span>
+                <div class="form-group text-center">
+                    <span >Forgot Password?</a></span>
+                </div>
+                
 
 
             </div>

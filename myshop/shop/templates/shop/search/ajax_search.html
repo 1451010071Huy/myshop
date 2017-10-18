@@ -1,7 +1,0 @@
-{% if products.count > 0 %}
-{% for product in products %}
-    <li><a href="{{ product.id }}/">{{ product.name }}</a></li>
-{% endfor %}
-{% else %}
-<li>None to show!</li>
-{% endif %}

@@ -8,24 +8,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    
+    <title>
+        {% block title %} Shop Homepage - Start Bootstrap Template {% endblock title %}
+    </title>
     
     <!-- Bootstrap core CSS -->
-    <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
     <link href="{% static "vendor/bootstrap/css/bootstrap.css" %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{% static "css/shop-homepage.css" %}" rel="stylesheet">
     <link rel="shortcut icon" href="{% static "img/carted.png" %}">
     <style>
-        a{
-        text-decoration:none;
-        color: #BF368E;
+        a {
+            text-decoration: none;
+            color: #BF368E;
         }
-        a:hover 
-        {
-           text-decoration: none;
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: table;
+            width: 100%;
+        }
+
+        .page-row {
+            display: table-row;
+            height: 50px;
+        }
+
+        .page-row-expanded {
+            height: 100%;
         }
     </style>
   </head>
@@ -72,8 +92,8 @@
                       {{ request.user.username }}
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                         <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                     </div>
                     {% else %}
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -87,7 +107,6 @@
                   </div>
                 </div>
 
-
     </nav>
 
     {% block content %}
@@ -97,14 +116,14 @@
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
-    <script src="{% static "vendor/popper/popper.min.js" %}"></script>
-    <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "vendor/jquery/jquery.js" %}"></script>
+    <script src="{% static "vendor/popper/popper.js" %}"></script>
+    <script src="{% static "vendor/bootstrap/js/bootstrap.js" %}"></script>
   </body>
 
-  <footer class="footer py-5 bg-dark">
+  <footer class="footer py-5 bg-dark page-row">
       <div class="containerfooter">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white"><strong>HCMC Open University</strong> - Your Website 2017</p>
       </div>
       <!-- /.container -->
   </footer>

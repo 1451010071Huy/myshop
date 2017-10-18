@@ -1,47 +1,49 @@
-{% extends 'shop/base.html' %}
+{% extends 'shop/base.html' %} {% block head %}
+{% block title %}
+    Edit-profile
+{% endblock title %}
+{% endblock %} {% block content %}
+<br/>
+<form method="post" action="">
+    <div class="container">
+        <div class="row">
+            <div class='col-md-3'></div>
+            <div class="col-md-6">
+                <div class="edit_box ">
+                    <form action="">
+                        <legend>Edit Profile</legend>
+                        <div class="form-group">
+                            <label for="id_newemail">Email address:</label>
+                            <input class="form-control" type="email" name="email" placeholder="New Email" id="id_newemail">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_first_name" class="col-form-label">First name</label>
+                            <input class="form-control" type="text" name="first_name" placeholder="New First name" id="id_first_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_last_name" class="col-form-label">Last name</label>
+                            <input class="form-control" type="text" name="last_name" placeholder="New Last name" id="id_last_name">
+                        </div>
 
-
-{% block head %}
-<title>Profile</title>
-{% endblock %}
-
-{% block content %}
-    <br/>
-    <form method="post" action="">
-        <div class="container">
-            <div class="row">
-                <div class='col-md-3'></div>
-                <div class="col-md-6">
-                    <div class="edit_box ">
-                        <form action="">
-                            <legend>Edit Profile</legend>
-                            <div class="form-group">
-                                <label for="id_newemail">Email address:</label>
-                                <input class="form-control" type="email" name="email" placeholder="New Email"  id="id_newemail" {{ form.email }} >
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col text-right"> 
+                                        <input type="submit" class="btn btn-outline-primary" value="Save" />
+                                </div>
+                                <div class="col text-left"> 
+                                <a class="btn btn-outline-primary" href="{% url 'profile' %}">Cancel</a>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="id_first_name" class="col-form-label">First name</label>
-                                <input class="form-control" type="text" name="first_name" placeholder="New First name"  id="id_first_name" {{ form.first_name }}>
-                            </div>
-                            <div class="form-group">
-                                <label for="id_last_name" class="col-form-label">Last name</label>
-                                <input class="form-control" type="text" name="last_name" placeholder="New Last name"  id="id_last_name" {{ form.last_name }}>
-                            </div>
-
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <input style="float: left" type="submit" class="btn btn-default m-t-md" value="Edit" />
-                                <div  class="p-2 d-flex"><a class="btn btn-outline-primary" href="{% url 'profile' %}" >Cancel</a></div>
-                            </div>
-
-
-                        </form>
-
-                    </div>
+                        </div>
                 </div>
-                <div class='col-md-3'></div>
+
+                </form>
             </div>
         </div>
-    </form>
+        <div class='col-md-3'></div>
+    </div>
+    </div>
+</form>
 
 {% endblock %}

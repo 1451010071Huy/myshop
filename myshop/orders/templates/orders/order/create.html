@@ -31,20 +31,35 @@
                 </div>
                 <input class="btn btn-default btn-login-submit btn-block m-t-md" type="submit" value="Place order"> {% csrf_token %}
         </form>
-        <div class="col-sm-6 text-right">
-            <h1>Checkout</h1>
-            <div class="panel panel-success">
-                <h3>Your order</h3>
-                <ul>
-                    {% for item in cart %}
-                    <div >
-                            {{ item.quantity }}x {{ item.product.name }} <span>{{ item.total_price }}</span>
-                    </div>
-                    {% endfor %}
-                </ul>
-                <p>Total: {{ cart.get_total_price }}</p>
+        <!--Panel-->
+        <div class="col text-left ml-5">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header success-color white-text" style="background: #BF368E; color: white">
+                    <h1>Checkout</h1>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Your order</h3>
+                    <ul class="card-text" style="color: #BF368E">
+                        {% for item in cart %}
+                        <div>
+                            <span class="badge badge-secondary">{{ item.quantity }}</span> x {{ item.product.name }} <span>{{ item.total_price }}</span>
+                        </div>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="card-footer text-right">
+                    <p class="mb-0">Total: {{ cart.get_total_price }}</p>
+                </div>
             </div>
         </div>
+        <!--/.Panel-->
+
+        
+<!--Panel-->
+
+                    
+                            
+                
     </div>
 </div>
 <br/>
