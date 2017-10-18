@@ -1,7 +1,9 @@
 {% extends 'shop/base.html' %}
 {% load static %}
+
+
 {% block content %}
-<form method="post" action="">
+<form method="post" action="" >
 
     <div class="container">
         <div class="row">
@@ -10,6 +12,13 @@
                 <div class="login-box well">
                     <form action="">
                         <legend>Login</legend>
+                        {% if login_form.non_field_errors %}
+                        <div class="alert alert-warning" role="alert">
+                            {% for error in login_form.non_field_errors %}
+                                <strong>{{ error|escape }}</strong>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                         <div class="form-group">
                             <label for="username-email">Username</label>
                             <input class="form-control" type="text" name="username" placeholder="Username" required="" id="id_username">
@@ -29,6 +38,13 @@
                             <p class="text-center m-t-xs text-sm">Do not have an account?</p>
                             <a href="/accounts/register/" class="btn btn-default btn-block m-t-md">Create an account</a>
                         </div>
+                        {% if form.subject.errors %}
+                        <ol>
+                        {% for error in form.subject.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                        </ol>
+                        {% endif %}
                     </form>
 
                 </div>

@@ -24,9 +24,7 @@ class UserForm(forms.ModelForm):
         if username and password:
             user = authenticate(username=username, password=password)
             if not user:
-                raise forms.ValidationError("This user does not exists")
-            if not user.check_password(password):
-                raise forms.ValidationError("Incorrect Password")
+                raise forms.ValidationError("Username or password is incorrect")
         return super(UserForm, self).clean(*args,**kwargs)
 
 
