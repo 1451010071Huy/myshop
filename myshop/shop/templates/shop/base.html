@@ -19,7 +19,24 @@
     <!-- Custom styles for this template -->
     <link href="{% static "css/shop-homepage.css" %}" rel="stylesheet">
     <link rel="shortcut icon" href="{% static "img/carted.png" %}">
-    <style>
+    <style type="text/css">
+        #bttop{
+        background: grey;
+        text-align:center;
+        padding:5px;
+        position:fixed;
+        bottom:35px;
+        right:35px;
+        cursor:pointer;
+        display:none;
+        color:#fff;
+        font-size:14px;
+        font-weight:900
+        }
+        #bttop:hover{
+        border:1px solid #ffa789;
+        background:#BF368E
+        }
         a {
             text-decoration: none;
             color: #BF368E;
@@ -120,7 +137,23 @@
     <script src="{% static "vendor/popper/popper.js" %}"></script>
     <script src="{% static "vendor/bootstrap/js/bootstrap.js" %}"></script>
   </body>
-
+  <div id='bttop'>BACK TO TOP</div>
+    <script type='text/javascript'>
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() != 0) {
+                    $('#bttop').fadeIn();
+                } else {
+                    $('#bttop').fadeOut();
+                }
+            });
+            $('#bttop').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+        });
+    </script>
   <footer class="footer py-5 bg-dark page-row">
       <div class="containerfooter">
         <p class="m-0 text-center text-white"><strong>HCMC Open University</strong> - Your Website 2017</p>
